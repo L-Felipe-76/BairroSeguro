@@ -26,8 +26,8 @@ public class Endereco {
     private String referenciasRua;
 
     //Relacionamentos
-    @OneToOne
-    private User usersEnderecos;
+    @OneToOne(mappedBy = "enderecoUsers")
+    private User users;
 
     @OneToMany(mappedBy = "enderecos", cascade = CascadeType.ALL)
     private List<Ocorrencia> ocorrencia;
@@ -37,7 +37,7 @@ public class Endereco {
     public Endereco() {
     }
 
-    public Endereco(Long id, String cep, String estado, String cidade, String bairro, String rua, String numeroCasa, String referenciasRua, User user, List<Ocorrencia> ocorrencia) {
+    public Endereco(Long id, String cep, String estado, String cidade, String bairro, String rua, String numeroCasa, String referenciasRua, User users, List<Ocorrencia> ocorrencia) {
         this.id = id;
         this.cep = cep;
         this.estado = estado;
@@ -46,11 +46,12 @@ public class Endereco {
         this.rua = rua;
         this.numeroCasa = numeroCasa;
         this.referenciasRua = referenciasRua;
-        this.usersEnderecos = user;
+        this.users = users;
         this.ocorrencia = ocorrencia;
     }
 
     //Gets & Sets
+
 
     public Long getId() {
         return id;
@@ -116,12 +117,12 @@ public class Endereco {
         this.referenciasRua = referenciasRua;
     }
 
-    public User getUser() {
-        return usersEnderecos;
+    public User getUsers() {
+        return users;
     }
 
-    public void setUser(User user) {
-        this.usersEnderecos = user;
+    public void setUsers(User users) {
+        this.users = users;
     }
 
     public List<Ocorrencia> getOcorrencia() {

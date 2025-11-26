@@ -27,7 +27,6 @@ public class User {
     @Check(name = "password_check", constraints = "password = confirm_password")
     private String password; // Adicionar mascara de substituição ******** no front
     @Column(nullable = false)
-    @Check(name = "password_check", constraints = "password = confirm_password")
     private String confirmPassword; // Adicionar mascara de substituição ******** no front
     @Column(nullable = false, length = 15)
     private String phone; // Adicionar mascara (xx) xxxxx-xxxx no front
@@ -50,15 +49,15 @@ public class User {
     private List<Morador> morador;
     @OneToMany(mappedBy = "usersOcorrencia", cascade = CascadeType.ALL)
     private List<Ocorrencia> ocorrencia;
-    @OneToOne(mappedBy = "usersEnderecos")
-    private Endereco enderecos;
+    @OneToOne
+    private Endereco enderecoUsers;
 
     //Construtores
 
     public User() {
     }
 
-    public User(Long id, String fullName, Genero genre, String email, Date aniversary, String password, String confirmPassword, String phone, Integer qtMoradores, List<Morador> morador, List<Ocorrencia> ocorrencia, Endereco enderecos) {
+    public User(Long id, String fullName, Genero genre, String email, Date aniversary, String password, String confirmPassword, String phone, Integer qtMoradores, List<Morador> morador, List<Ocorrencia> ocorrencia, Endereco enderecoUsers) {
         this.id = id;
         this.fullName = fullName;
         this.genre = genre;
@@ -70,10 +69,11 @@ public class User {
         this.qtMoradores = qtMoradores;
         this.morador = morador;
         this.ocorrencia = ocorrencia;
-        this.enderecos = enderecos;
+        this.enderecoUsers = enderecoUsers;
     }
 
     //Gets & Sets
+
 
     public Long getId() {
         return id;
@@ -163,11 +163,11 @@ public class User {
         this.ocorrencia = ocorrencia;
     }
 
-    public Endereco getEndereco() {
-        return enderecos;
+    public Endereco getEnderecoUsers() {
+        return enderecoUsers;
     }
 
-    public void setEndereco(Endereco endereco) {
-        this.enderecos = endereco;
+    public void setEnderecoUsers(Endereco enderecoUsers) {
+        this.enderecoUsers = enderecoUsers;
     }
 }
